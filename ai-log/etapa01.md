@@ -2,6 +2,7 @@
 
 ## Tools
 - ChatGPT / Gemini
+link-ul conversatiei: https://gemini.google.com/app/dbc36b7108f5cd26
 
 ## Conversations
 - Web UI design and HTML/CSS mockups for Service Auto management application.
