@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoService Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>AutoService Manager</h1>
+    <p>Gestiunea fișelor de reparații și a programărilor din atelier.</p>
+    <p class="app-count">3 lucrări înregistrate, dintre care 2 active</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Adaugă lucrări / mașină</h2>
+      <form class="item-form">
+        <label>
+          Vehicul & Descriere
+          <input type="text" name="titlu" placeholder="Ex: Schimb ulei - B 123 ABC" required />
+        </label>
+        
+        <label>
+          Prioritate
+          <select name="eticheta">
+            <option value="scazuta">Scăzută</option>
+            <option value="medie">Medie</option>
+            <option value="urgente">Urgente</option>
+          </select>
+        </label>
+
+        <button type="submit">Adaugă în service</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Lucrări în curs & finalizate</h2>
+      
+      <ul class="item-list">
+        <li class="item-card">
+          <div class="card-info">
+            <h3>Schimb plăcuțe frână - B 101 XYZ</h3>
+            <span class="badge badge-urgente">Urgente</span>
+          </div>
+          <span class="status status-active">În lucru</span>
+        </li>
+
+        <li class="item-card done">
+          <div class="card-info">
+            <h3>Diagnoză computerizată - B 777 TST</h3>
+            <span class="badge badge-medie">Medie</span>
+          </div>
+          <span class="status status-done">Finalizată</span>
+        </li>
+
+        <li class="item-card">
+          <div class="card-info">
+            <h3>Înlocuire kit distribuție - CJ 99 MAI</h3>
+            <span class="badge badge-scazuta">Scăzută</span>
+          </div>
+          <span class="status status-active">În lucru</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 AutoService Manager · Proiect Tehnologii Web</p>
+  </footer>
+</body>
+</html>
