@@ -1,9 +1,266 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --header-bg: #3b82f6;
+  --header-text: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #334155;
+  --header-bg: #1e293b;
+  --header-text: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Antet */
+.app-header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 40px 16px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  font-size: 2.25rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.app-header p {
+  opacity: 0.9;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.app-count {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+/* Buton comutare temă */
+.theme-toggle {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Layout principal pe 2 coloane */
 .container {
-  max-width: 1000px;
-  margin: 24px auto;
+  max-width: 1100px;
+  margin: 32px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 350px 1fr;
   gap: 24px;
-  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+}
+
+.panel h2 {
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Formular adăugare */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+/* Listă și carduri (fără puncte negre/buline) */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--card);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.task-card.done {
+  opacity: 0.65;
+  background-color: var(--bg);
+}
+
+.task-card.done h3 {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.task-main input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.task-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Badge-uri priorități */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-urgente {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.badge-medie {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.badge-scazuta {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+/* Buton ștergere */
+.btn-danger {
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-danger:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+.empty {
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
 }

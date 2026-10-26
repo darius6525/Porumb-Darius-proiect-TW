@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard.jsx";
 
-export default function TaskList({ taskuri }) {
+export default function TaskList({ taskuri, onToggle, onDelete }) {
   if (taskuri.length === 0) {
     return <p className="empty">Nu exista nicio lucrare inregistrata.</p>;
   }
@@ -8,7 +8,12 @@ export default function TaskList({ taskuri }) {
   return (
     <ul className="task-list">
       {taskuri.map((task) => (
-        <TaskCard key={task.id} task={task} />
+        <TaskCard
+          key={task.id}
+          task={task}
+          onToggle={onToggle}
+          onDelete={onDelete}
+        />
       ))}
     </ul>
   );

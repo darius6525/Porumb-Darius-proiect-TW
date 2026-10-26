@@ -1,18 +1,28 @@
-const ETICHETE_PRIORITATE = { Scăzută: "scazuta", Medie: "medie", Urgente: "urgente" };
+const ETICHETE_PRIORITATE = { scazuta: "Scazuta", medie: "Medie", urgente: "Urgente" };
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task, onToggle, onDelete }) {
   return (
-    <li className={task.finalizat ? "task-card done" : "task-card"}>
-      <div>
-        <h3>{task.numar_inmatriculare}</h3>
-        <span className={`badge badge-${task.prioritate.toLowerCase()}`}>
-          Prioritate: {task.prioritate}
-        </span>
-        <p style={{ marginTop: "8px", fontSize: "0.9rem", color: "#666" }}>
-          Categorie: {task.categorie} | Mecanic: {task.mecanic}
-        </p>
-      </div>
-      <span className="status">{task.finalizat ? "Gata" : "Activ"}</span>
+    <li className={task.gata ? "task-card done" : "task-card"}>
+      <label className="task-main">
+        <input
+          type="checkbox"
+          checked={task.gata}
+          onChange={() => onToggle(task.id)}
+        />
+        <div>
+          <h3>{task.titlu}</h3>
+          <span className={`badge badge-${task.prioritate}`}>
+            Prioritate: {ETICHETE_PRIORITATE[task.prioritate]}
+          </span>
+        </div>
+      </label>
+      <button
+        className="btn-danger"
+        onClick={() => onDelete(task.id)}
+        aria-label={`Sterge ${task.titlu}`}
+      >
+        Sterge
+      </button>
     </li>
   );
 }
