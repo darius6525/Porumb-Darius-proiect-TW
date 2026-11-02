@@ -1,21 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskList from "./components/TaskList.jsx";
-
-const TASKURI_INITIALE = [
-  { id: 1, titlu: "Schimb placute frana - B 101 XYZ", gata: false, prioritate: "urgente" },
-  { id: 2, titlu: "Diagnoza computerizata - B 777 TST", gata: true, prioritate: "medie" },
-  { id: 3, titlu: "Inlocuire kit distributie - CJ 99 MAI", gata: false, prioritate: "scazuta" }
-];
+import { fetchTasks } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [taskuri, setTaskuri] = useState(TASKURI_INITIALE);
+  const [taskuri, setTaskuri] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [tema, setTema] = useState(temaInitiala);
   const [titluNou, setTitluNou] = useState("");
   const [prioritateNoua, setPrioritateNoua] = useState("scazuta");
+
+  // Încărcarea datelor la montarea componentei (Etapa 6)
+  useEffect(() => {
+    let ignore = false;
+
+    async function load() {
+      try {
+        const data = await fetchTasks();
+        if (!ignore) {
+          setTaskuri(data);
+        }
+      } catch (err) {
+        if (!ignore) {
+          setError(err.message);
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+
+    load();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggle(id) {
     setTaskuri((prev) =>
@@ -97,11 +123,22 @@ export default function App() {
 
         <section className="panel">
           <h2>Lucrari in curs & finalizate</h2>
-          <TaskList
-            taskuri={taskuri}
-            onToggle={handleToggle}
-            onDelete={handleDelete}
-          />
+
+          {loading && <p className="info">Se încarcă lucrările...</p>}
+
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+
+          {!loading && !error && (
+            <TaskList
+              taskuri={taskuri}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+            />
+          )}
         </section>
       </main>
     </>
