@@ -1,0 +1,6 @@
+{
+  "resource": "tasks",
+  "title": "titlu",
+  "done": "gata",
+  "sample": { "prioritate": "medie" }
+}
