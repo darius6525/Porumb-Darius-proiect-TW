@@ -1,34 +1,22 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "titlu": "Schimb plăcuțe frână - B 101 XYZ",
+      "id": "1",
+      "titlu": "Schimb plăcuțe de frână",
+      "prioritate": "mare",
+      "gata": true
+    },
+    {
+      "id": "2",
+      "titlu": "Diagnoză motor",
+      "prioritate": "medie",
+      "gata": true
+    },
+    {
+      "titlu": "schimb distributie",
+      "prioritate": "medie",
       "gata": false,
-      "prioritate": "urgente"
-    },
-    {
-      "id": 2,
-      "titlu": "Diagnoză computerizată - B 777 TST",
-      "gata": true,
-      "prioritate": "medie"
-    },
-    {
-      "id": 3,
-      "titlu": "Înlocuire kit distribuție - CJ 99 MAI",
-      "gata": false,
-      "prioritate": "scazuta"
-    },
-    {
-      "id": 4,
-      "titlu": "Schimb ulei și filtre - IF 05 ABC",
-      "gata": false,
-      "prioritate": "medie"
-    },
-    {
-      "id": 5,
-      "titlu": "Geometrie roți - B 999 FIX",
-      "gata": true,
-      "prioritate": "scazuta"
+      "id": "VWVAY-r"
     }
   ]
 }

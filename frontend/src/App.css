@@ -1,221 +1,194 @@
-:root {
-  --bg: #f4f5f7;
-  --card: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --header-bg: #2563eb;
-  --header-text: #ffffff;
-
-  /* Culori eroare */
-  --error-bg: #fdf2f8;
-  --error-border: #fbcfe8;
-  --error-text: #dc2626;
-}
-
-:root[data-theme="dark"] {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: #334155;
-  --header-bg: #1e293b;
-  --header-text: #f8fafc;
-
-  --error-bg: #3b1d2e;
-  --error-border: #6b2a4a;
-  --error-text: #f87171;
-}
-
+/* Resetare generală */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding-bottom: 40px;
 }
 
 /* Header */
 .app-header {
-  background-color: var(--header-bg);
-  color: var(--header-text);
-  padding: 40px 16px;
+  background-color: #5c44e4;
+  color: white;
+  padding: 28px 20px;
   text-align: center;
-  position: relative;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 12px auto;
 }
 
 .app-header h1 {
-  font-size: 2.25rem;
-  margin-bottom: 8px;
-  font-weight: 700;
+  font-size: 2.1rem;
+  font-weight: 800;
 }
 
 .app-header p {
-  opacity: 0.9;
-  margin-bottom: 6px;
-  font-size: 1rem;
+  opacity: 0.95;
+  font-size: 0.95rem;
 }
 
 .app-count {
-  font-weight: 600;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* Buton schimbare temă */
+.theme-toggle-btn {
   background-color: rgba(255, 255, 255, 0.2);
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 20px;
-  margin-top: 8px;
-  font-size: 0.9rem;
-}
-
-/* Buton Schimbare Temă */
-.theme-toggle {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 8px 16px;
+  color: white;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.25);
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
-/* Container principal */
+/* Container cu 2 coloane */
 .container {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 16px;
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+  align-items: start;
 }
 
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Panou alb */
 .panel {
-  background: var(--card);
+  background: white;
   padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
 }
 
 .panel h2 {
-  margin-bottom: 20px;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111827;
 }
 
-/* Formular */
+/* Structura Formularului */
 .task-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-group {
+.task-form label {
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
-
-.form-group label {
+  font-weight: 600;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--muted);
+  color: #4b5563;
 }
 
-.form-group input,
-.form-group select {
-  padding: 10px 12px;
-  border: 1px solid var(--border);
+.task-form input[type="text"],
+.task-form select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  background: var(--bg);
-  color: var(--text);
-  font: inherit;
+  font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.2s;
+  background-color: #fff;
+  color: #111827;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  border-color: #3b82f6;
+.task-form input[type="text"]:focus,
+.task-form select:focus {
+  border-color: #5c44e4;
+  box-shadow: 0 0 0 3px rgba(92, 68, 228, 0.15);
 }
 
-.btn-primary {
-  background-color: #2563eb;
+.task-form input[aria-invalid="true"] {
+  border-color: #ef4444;
+}
+
+/* Buton adăugare stilizat */
+.btn-submit {
+  background-color: #5c44e4;
   color: white;
+  font-weight: 600;
+  padding: 12px;
   border: none;
   border-radius: 8px;
-  padding: 12px 16px;
-  font: inherit;
-  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  width: 100%;
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
+.btn-submit:hover:not(:disabled) {
+  background-color: #4b36c4;
 }
 
-/* Carduri și Listă (Styling complet) */
-ul, .task-list {
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mesaje de eroare */
+.error {
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  border: 1px solid #fecaca;
+}
+
+.info, .empty {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Lista de Task-uri */
+.task-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 0;
 }
 
-li, .task-card {
+.task-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  border: 1px solid var(--border);
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
   border-radius: 10px;
-  background-color: var(--card);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-  transition: all 0.2s ease;
+  background-color: #fff;
 }
 
-li:hover, .task-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+.task-card.done {
+  background-color: #f9fafb;
 }
 
-/* Starea finalizată */
-li.done, .task-card.done {
-  opacity: 0.6;
-  background-color: var(--bg);
-}
-
-li.done h3, .task-card.done h3,
-li.done span, .task-card.done span {
+.task-card.done h3 {
   text-decoration: line-through;
-  color: var(--muted);
+  color: #9ca3af;
 }
 
-/* Secțiunea stânga a cardului (checkbox + titlu) */
 .task-main {
   display: flex;
   align-items: center;
@@ -224,12 +197,110 @@ li.done span, .task-card.done span {
   flex: 1;
 }
 
-input[type="checkbox"] {
+.task-main input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #2563eb;
+  accent-color: #5c44e4;
   cursor: pointer;
 }
 
-/* Titlu și Prioritate */
-.
+.task-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.task-main h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Badge-uri de prioritate cu pilulă colorată */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.badge-mica {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.badge-medie {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.badge-mare {
+  background-color: #fce7f3;
+  color: #be185d;
+}
+
+/* Buton Șterge roz/roșu conturat */
+.btn-danger {
+  background-color: #fff;
+  color: #be185d;
+  border: 1px solid #fbcfe8;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #fdf2f8;
+}
+
+/* --- DARK MODE --- */
+body.dark-theme {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+body.dark-theme .app-header {
+  background-color: #1e1b4b;
+}
+
+body.dark-theme .panel {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+body.dark-theme .panel h2,
+body.dark-theme .task-form label,
+body.dark-theme .task-main h3 {
+  color: #f1f5f9;
+}
+
+body.dark-theme .task-form input[type="text"],
+body.dark-theme .task-form select {
+  background-color: #0f172a;
+  border-color: #475569;
+  color: #f8fafc;
+}
+
+body.dark-theme .task-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+body.dark-theme .task-card.done {
+  background-color: #0f172a;
+}
+
+body.dark-theme .task-card.done h3 {
+  color: #64748b;
+}
+
+/* Responsive pe mobil */
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
